@@ -35,6 +35,7 @@ function callApi(endpoint, token) {
     .then((response) => response.json())
     .then((response) => {
       if (response) {
+        logMessage(response);
         logMessage("Web API responded: Hello " + response.results + "!");
       }
 
