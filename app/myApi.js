@@ -18,7 +18,7 @@
 // }
 
 function callApi(endpoint, token) {
-  console.log(token);
+  //console.log(token);
   const headers = new Headers();
   const bearer = `Bearer ${token}`;
 
@@ -31,15 +31,43 @@ function callApi(endpoint, token) {
 
   logMessage("Calling Web API...");
 
+  // fetch(endpoint, options)
+  //   //.then((response) => response.json())
+  //   .then((response) => {
+  //     if (response) {
+  //       console.log("response", response);
+  //       console.log("response.json", response.json());
+  //       logMessage("Web API responded: Hello " + response.json() + "!");
+  //     }
+
+  //     return response;
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+
   fetch(endpoint, options)
-    .then((response) => response.json())
     .then((response) => {
-      if (response) {
-        logMessage(response);
-        logMessage("Web API responded: Hello " + response.results + "!");
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Request failed with status: " + response.status);
+      }
+    })
+    .then((jsonData) => {
+      console.log("Response JSON:", jsonData);
+
+      if (jsonData.panels && jsonData.panels.length > 0) {
+        console.log("Panels:", jsonData.panels);
+      } else {
+        console.log("No panels found in the response.");
       }
 
-      return response;
+      // You can also access other properties like Header and Footer if needed
+      console.log("Header:", jsonData.header);
+      console.log("Footer:", jsonData.footer);
+
+      // You can use these properties in any way you need
     })
     .catch((error) => {
       console.error(error);

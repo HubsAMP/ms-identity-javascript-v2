@@ -9,10 +9,9 @@
 const msalConfig = {
   auth: {
     // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-    clientId: "f50adc4b-fba6-4795-8b6c-fcc83b537ad4",
+    clientId: "e42cc4f5-37fe-4066-ad12-5a8499b9b643",
     // Full directory URL, in the form of https://login.microsoftonline.com/<tenant-id>
-    authority:
-      "https://login.microsoftonline.com/4f45223a-8b22-4a46-a75b-845310de5d25",
+    authority: "https://login.microsoftonline.com/organizations",
     // Full redirect URL, in form of http://localhost:3000
     redirectUri: "http://localhost:3000",
   },
@@ -47,7 +46,7 @@ const msalConfig = {
 
 // Add here the endpoints and scopes for the web API you would like to use.
 const apiConfig = {
-  uri: "https://localhost:7111/api", // e.g. http://localhost:5000/api
+  uri: "https://localhost:7111/api/casesummaryconfig/config/ChildrensSocialCare", // e.g. http://localhost:5000/api
   scopes: ["api://f50adc4b-fba6-4795-8b6c-fcc83b537ad4/access_as_user"], // e.g. ["scp1", "scp2"]
 };
 
