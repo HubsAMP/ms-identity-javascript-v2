@@ -126,13 +126,17 @@ function readMail() {
 //     });
 // }
 
-function passTokenToApi() {
+function callIGConfig() {
   getTokenPopup(tokenRequest).then((response) => {
     if (response) {
       console.log("access_token acquired at: " + new Date().toString());
-      console.log(response);
+      //console.log(response);
       try {
-        callApi(apiConfig.uri, response.accessToken);
+        callApi(apiConfig.igconfigUrl, response.accessToken, myCallBack);
+        // callApi(
+        //   apiConfig.uri,
+        //   "eyJpc3MiOiJYYW50dXJhQ09SRSIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0=.eyJhdWQiOiJJbnNpZ2h0IEFwcGxpY2F0aW9uIiwic3ViIjoiMzA5MTA1IiwiZXhwIjoiMTY5MzA3Njk2ODEyMCJ9.R21lvFC/PgXKh01enme7R+dKBp7CZbSv4n1nMK3FJW/RP0C6lGAEw01wPz4p2OgH3ewYQY2te3yL2VRIqs4cG7EbAO3gtFXfeLgVH9WlXvpWfejVjAmexHVOLmos2FFSHYSowAeCBo5NUaOr2n2vL9jmWxLPLPFeylpJcPhW1IVO1eV3ooWsgkuS8SJIl/dXuNH4DX4+I2HDeSfSkCgJuGSFcJqVCtsaAUiwCS9L7tsq0uW88JQSY/KoB1Ki9qE0NlfMZn9JXTKOy+uJ61Jecdkd58ABS4LkN86K277W8PDX9MBGgH27kaH0D7cWjKVaLt2qFmOnnHVZjbV0GSxnhQ=="
+        // );
       } catch (error) {
         console.warn(error);
       }
@@ -140,4 +144,35 @@ function passTokenToApi() {
   });
 }
 
+function callOVRef() {
+  getTokenPopup(tokenRequest).then((response) => {
+    if (response) {
+      console.log("access_token acquired at: " + new Date().toString());
+      //console.log(response);
+      try {
+        callApi(apiConfig.ovrefUrl, response.accessToken, myCallBack);
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+  });
+}
+
+function myCallBack(response, endpoint) {
+  // Check if the response status is OK (status code 200)
+  if (response.status === 200) {
+    response.json().then((data) => {
+      // Select the div element
+      const jsonDisplayDiv = document.getElementById("jsonDisplay");
+
+      // Convert the JSON object to a formatted JSON string
+      const formattedJSON = JSON.stringify(data, null, 2);
+
+      // Update the innerHTML of the div to display the JSON
+      jsonDisplayDiv.innerHTML = "<pre>" + formattedJSON + "</pre>";
+    });
+  } else {
+    console.log("Request to", endpoint, "failed with status:", response.status);
+  }
+}
 selectAccount();

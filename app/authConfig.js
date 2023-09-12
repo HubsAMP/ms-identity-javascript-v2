@@ -45,10 +45,29 @@ const msalConfig = {
 };
 
 // Add here the endpoints and scopes for the web API you would like to use.
+// Test API
+/*
 const apiConfig = {
-  uri: "https://localhost:7111/api/casesummaryconfig/config/ChildrensSocialCare", // e.g. http://localhost:5000/api
+  uri: "https://localhost:7111/api/casesummaryconfig/config/2", //"https://localhost:7111/api/SampleAuth", // e.g. http://localhost:5000/api
   scopes: ["api://f50adc4b-fba6-4795-8b6c-fcc83b537ad4/access_as_user"], // e.g. ["scp1", "scp2"]
 };
+*/
+
+// Call API to get IG screen details
+const apiConfig = {
+  igconfigUrl: "https://localhost:7111/api/ig/IGConfig",
+  ovrefUrl:
+    "https://localhost:7111/api/oneviewreference?dspRoleId=314067&appId=3&externalSystemReference=100759513",
+  scopes: ["api://f50adc4b-fba6-4795-8b6c-fcc83b537ad4/access_as_user"],
+};
+
+/*
+// Call API to get group ref based on external system reference
+const apiConfig = {
+  uri: "https://localhost:7111/api/oneviewreference?dspRoleId=314067&appId=3&externalSystemReference=100759513",
+  scopes: ["api://f50adc4b-fba6-4795-8b6c-fcc83b537ad4/access_as_user"],
+};
+*/
 
 /**
  * Scopes you add here will be prompted for user consent during sign-in.
