@@ -144,6 +144,20 @@ function callIGConfig() {
   });
 }
 
+function fetchData() {
+  getTokenPopup(tokenRequest).then((response) => {
+    if (response) {
+      console.log("access_token acquired at: " + new Date().toString());
+      //console.log(response);
+      try {
+        callApi(apiConfig.dataSetUrl, response.accessToken, myCallBack);
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+  });
+}
+
 function callOVRef() {
   getTokenPopup(tokenRequest).then((response) => {
     if (response) {

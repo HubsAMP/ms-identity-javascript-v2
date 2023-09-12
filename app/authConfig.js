@@ -58,6 +58,8 @@ const apiConfig = {
   igconfigUrl: "https://localhost:7111/api/ig/IGConfig",
   ovrefUrl:
     "https://localhost:7111/api/oneviewreference?dspRoleId=314067&appId=3&externalSystemReference=100759513",
+  dataSetUrl:
+    "https://localhost:7111/api/casesummarydata/179111281?dataIds=2,4,6",
   scopes: ["api://f50adc4b-fba6-4795-8b6c-fcc83b537ad4/access_as_user"],
 };
 
